@@ -1,5 +1,5 @@
 package com.codefury.bugtracking.service;
 
 public interface JsonParserService {
-    void parseJsonFile();
+    void parseJsonFile(String filePath);
 }

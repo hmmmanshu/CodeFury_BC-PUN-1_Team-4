@@ -1,6 +1,10 @@
 package com.codefury.bugtracking.service;
 
+import com.codefury.bugtracking.beans.Bug;
+
+import java.util.List;
+
 public interface DeveloperService {
-    void getAllBugs();
-    void markBugForClosing();
+    List<Bug> getAllBugs();
+    void markBugForClosing(int bugId, String remarks, int developerId);
 }
