@@ -10,7 +10,6 @@ import java.util.Scanner;
 
 public class TesterUserInterfaceImpl implements TesterUserInterface {
     private final int testerId;
-    private Scanner scanner;
     private TesterService testerService;
 
     public TesterUserInterfaceImpl(int testerId) {
@@ -30,7 +29,7 @@ public class TesterUserInterfaceImpl implements TesterUserInterface {
     @Override
     public void raiseNewBug() {
         testerService = new TesterServiceImpl();
-        scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         // TODO : Self Generated Bug Id
         System.out.println("Enter bug Id");
         int bugId = scanner.nextInt();
@@ -65,6 +64,6 @@ public class TesterUserInterfaceImpl implements TesterUserInterface {
                     System.out.println("Please enter one of the above choices");
             }
         } while (choice < 1 || choice > 4);
-        testerService.raiseNewBug(bugId, bugTitle, bugDescription, bugSeverityLevel);
+        testerService.raiseNewBug(bugId, testerId, bugTitle, bugDescription, bugSeverityLevel);
     }
 }

@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface TesterService {
     List<Project> getProjectsList();
-    void raiseNewBug(int bugId, String bugTitle, String bugDescription, SeverityLevel bugSeverityLevel);
+    void raiseNewBug(int bugId, int testerId, String bugTitle, String bugDescription, SeverityLevel bugSeverityLevel);
 }

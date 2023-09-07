@@ -13,7 +13,7 @@ public class TesterServiceImpl implements TesterService{
     }
 
     @Override
-    public void raiseNewBug(int bugId, String bugTitle, String bugDescription, SeverityLevel bugSeverityLevel) {
+    public void raiseNewBug(int bugId, int testerId, String bugTitle, String bugDescription, SeverityLevel bugSeverityLevel) {
 
     }
 }

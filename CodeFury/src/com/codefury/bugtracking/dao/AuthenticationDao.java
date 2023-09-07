@@ -1,5 +1,8 @@
 package com.codefury.bugtracking.dao;
 
+import com.codefury.bugtracking.beans.Employee;
+
 public interface AuthenticationDao {
-    void getCredentials();
+    Employee getCredentials(int employeeId);
+    void addCredentials(int employeeId, String password);
 }

@@ -7,7 +7,7 @@ public class DeveloperDaoImpl implements DeveloperDao{
     }
 
     @Override
-    public void markBugForClosing() {
+    public void markBugForClosing(int bugId, String remarks, int developerId) {
 
     }
 }

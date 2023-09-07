@@ -8,7 +8,6 @@ import java.util.Scanner;
 public class ImportJsonUserInterfaceImpl implements ImportJsonUserInterface {
     @Override
     public void selectJsonFile() {
-
         Scanner scanner;
         JsonParserService jsonParserService;
         jsonParserService = new JsonParserServiceImpl();

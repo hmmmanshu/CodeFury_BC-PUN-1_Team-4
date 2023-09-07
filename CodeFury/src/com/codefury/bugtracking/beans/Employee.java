@@ -2,12 +2,13 @@ package com.codefury.bugtracking.beans;
 
 import java.util.Date;
 
-abstract class Employee {
+public abstract class Employee {
     private static int employeeIdCounter = 1;
     private final int employeeId;
     private String name;
     private String email;
     private Date dateOfJoining;
+    private String password;
 
     public Employee(String name) {
         this.employeeId = employeeIdCounter++;
@@ -42,6 +43,14 @@ abstract class Employee {
         this.dateOfJoining = dateOfJoining;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -51,4 +60,6 @@ abstract class Employee {
                 ", dateOfJoining=" + dateOfJoining +
                 '}';
     }
+
+
 }

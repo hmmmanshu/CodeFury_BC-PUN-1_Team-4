@@ -17,7 +17,7 @@ public class DeveloperUserInterfaceImpl implements DeveloperUserInterface {
 
     @Override
     public void listAllBugs() {
-        developerService = new DeveloperServiceImpl();
+        developerService = new DeveloperServiceImpl(developerId);
         List<Bug> bugs = developerService.getAllBugs();
         for (Bug bug : bugs) {
             System.out.printf("[Bug ID : %d\tBug Heading : %s]", bug.getBugId(), bug.getBugHeading());
@@ -27,7 +27,7 @@ public class DeveloperUserInterfaceImpl implements DeveloperUserInterface {
     @Override
     public void markBugForClosing() {
         Scanner scanner;
-        developerService = new DeveloperServiceImpl();
+        developerService = new DeveloperServiceImpl(developerId);
         scanner = new Scanner(System.in);
         System.out.println("Enter Bug Id to be marked for closing");
         int bugId = scanner.nextInt();

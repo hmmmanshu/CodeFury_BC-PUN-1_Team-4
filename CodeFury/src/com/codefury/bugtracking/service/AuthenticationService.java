@@ -1,6 +1,9 @@
 package com.codefury.bugtracking.service;
 
+import com.codefury.bugtracking.beans.Employee;
+
 public interface AuthenticationService {
-    void validateCredentials();
-    void addNewCredentials();
+    Employee validateCredentials(int employeeId, String password);
+
+    void addNewCredentials(int employeeId, String password, String confirmationPassword);
 }
