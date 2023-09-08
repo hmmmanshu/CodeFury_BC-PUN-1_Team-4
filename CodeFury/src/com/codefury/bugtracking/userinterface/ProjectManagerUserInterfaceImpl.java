@@ -2,9 +2,11 @@ package com.codefury.bugtracking.userinterface;
 
 import com.codefury.bugtracking.beans.Project;
 import com.codefury.bugtracking.beans.ProjectStatus;
-import com.codefury.bugtracking.exceptions.CouldNotAddProjectException;
+import com.codefury.bugtracking.beans.Role;
+import com.codefury.bugtracking.exceptions.*;
 import com.codefury.bugtracking.service.ProjectManagerService;
 import com.codefury.bugtracking.service.ProjectManagerServiceImpl;
+import com.sun.security.auth.module.NTSystem;
 
 import java.util.List;
 import java.util.Scanner;
@@ -55,7 +57,6 @@ public class ProjectManagerUserInterfaceImpl implements ProjectManagerUserInterf
         } while (choice >= 1 && choice <= 5);
     }
 
-
     @Override
     public void addNewProject() {
         projectManagerService = new ProjectManagerServiceImpl();
@@ -76,8 +77,12 @@ public class ProjectManagerUserInterfaceImpl implements ProjectManagerUserInterf
     public void viewProjectsDirectory() {
         projectManagerService = new ProjectManagerServiceImpl();
         scanner = new Scanner(System.in);
-        projectManagerService = new ProjectManagerServiceImpl();
-        List<Project> projectList = projectManagerService.getProjectsList();
+        List<Project> projectList = null;
+        try {
+            projectList = projectManagerService.getProjectsList();
+        } catch (CouldNotGetProjectsListException e) {
+            System.out.println(e.getMessage());
+        }
         for (Project project : projectList) {
             System.out.println(project);
         }
@@ -89,16 +94,41 @@ public class ProjectManagerUserInterfaceImpl implements ProjectManagerUserInterf
         scanner = new Scanner(System.in);
         System.out.println("Enter bug id to be close");
         int bugId = scanner.nextInt();
-        projectManagerService.closeBug(bugId);
+        try {
+            projectManagerService.closeBug(bugId);
+        } catch (CouldNotCloseBugException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override
     public void changeProjectStatus() {
-
+        projectManagerService = new ProjectManagerServiceImpl();
+        scanner = new Scanner(System.in);
+        System.out.println("Enter project id to mark as completed");
+        int projectId = scanner.nextInt();
+        try {
+            projectManagerService.changeProjectStatus(projectId);
+        } catch (CouldNotChangeProjectStatus e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override
     public void addEmployeeToProject() {
-
+        projectManagerService = new ProjectManagerServiceImpl();
+        scanner = new Scanner(System.in);
+        System.out.println("Enter project id to add a new employee to");
+        int projectId = scanner.nextInt();
+        System.out.println("Enter employee id to be added");
+        int employeeId = scanner.nextInt();
+        System.out.println("Enter the role assigned\n1. Developer\n2. Tester");
+        int choice = scanner.nextInt();
+        Role role = choice == 1 ? Role.DEVELOPER : Role.TESTER;
+        try {
+            projectManagerService.addEmployeeToProject(projectId, employeeId, role);
+        } catch (CouldNotAddEmployeeException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

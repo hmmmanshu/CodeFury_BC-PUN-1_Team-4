@@ -68,4 +68,9 @@ public class TesterUserInterfaceImpl implements TesterUserInterface {
         } while (choice < 1 || choice > 4);
         testerService.raiseNewBug(bugId,projectId, testerId, bugTitle, bugDescription, bugSeverityLevel);
     }
+
+    @Override
+    public void showChoices() {
+
+    }
 }

@@ -35,4 +35,9 @@ public class DeveloperUserInterfaceImpl implements DeveloperUserInterface {
         String remarks = scanner.next();
         developerService.markBugForClosing(bugId, remarks, developerId);
     }
+
+    @Override
+    public void showChoices() {
+
+    }
 }
