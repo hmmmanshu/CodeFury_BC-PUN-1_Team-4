@@ -1,6 +1,7 @@
 package com.codefury.bugtracking.service;
 
 import com.codefury.bugtracking.beans.Project;
+import com.codefury.bugtracking.beans.ProjectStatus;
 import com.codefury.bugtracking.beans.Role;
 import com.codefury.bugtracking.dao.ProjectManagerDao;
 import com.codefury.bugtracking.dao.ProjectManagerDaoImpl;
@@ -46,9 +47,17 @@ public class ProjectManagerServiceImpl implements ProjectManagerService {
     public void changeProjectStatus(int projectId) throws CouldNotChangeProjectStatus {
         projectManagerDao = new ProjectManagerDaoImpl();
         try {
-            projectManagerDao.changeProjectStatus(projectId);
+            Project project = projectManagerDao.getProjectsList()
+                    .stream()
+                    .filter(project2 -> project2.getProjectId() == projectId)
+                    .findFirst()
+                    .orElseThrow(() -> new CouldNotChangeProjectStatus("Could not change project status"));
+            if (project.getProjectStatus() == ProjectStatus.IN_PROGRESS) {
+                projectManagerDao.changeProjectStatus(projectId, ProjectStatus.COMPLETED);
+            } else
+                projectManagerDao.changeProjectStatus(projectId, ProjectStatus.IN_PROGRESS);
         } catch (SQLException e) {
-            throw new CouldNotChangeProjectStatus("Could not throw project status : " + e.getMessage());
+            throw new CouldNotChangeProjectStatus("Could not change project status : " + e.getMessage());
         }
     }
 
