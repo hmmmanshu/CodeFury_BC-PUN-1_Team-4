@@ -1,33 +1,66 @@
 package com.codefury.bugtracking.service;
 
 import com.codefury.bugtracking.beans.Bug;
+import com.codefury.bugtracking.beans.BugStatus;
 import com.codefury.bugtracking.beans.Project;
 import com.codefury.bugtracking.beans.SeverityLevel;
 import com.codefury.bugtracking.dao.TesterDao;
 import com.codefury.bugtracking.dao.TesterDaoImpl;
+import com.codefury.bugtracking.exceptions.CantRaiseBugInCurrentProjectException;
+import com.codefury.bugtracking.exceptions.CouldNotGetBugsList;
+import com.codefury.bugtracking.exceptions.CouldNotGetProjectsListException;
 
+import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 public class TesterServiceImpl implements TesterService {
     private final int testerId;
     private TesterDao testerDao;
+
     public TesterServiceImpl(int testerId) {
         this.testerId = testerId;
     }
 
     @Override
-    public List<Project> getProjectsList() {
+    public List<Project> getProjectsList() throws CouldNotGetProjectsListException {
         testerDao = new TesterDaoImpl();
-        // TODO: Can throw no projects assigned exception
-        List<Project> projectList= testerDao.getProjectsList(testerId);
+        List<Project> projectList = null;
+        try {
+            projectList = testerDao.getProjectsList(testerId);
+        } catch (SQLException e) {
+            throw new CouldNotGetProjectsListException("Could not get projects list : " + e.getMessage());
+        }
         return projectList;
     }
 
     @Override
-    public void raiseNewBug(int bugId, int testerId,int projectId, String bugTitle, String bugDescription, SeverityLevel bugSeverityLevel) {
-//        testerDao = new TesterDaoImpl();
-//        Project project = testerDao.getProjectsList()
-//        Bug bug = new Bug(bugId, bugTitle, bugDescription, projectId, this.testerId, )
-//        testerDao.addNewBug();
+    public List<Bug> getBugsList(int projectId) throws CouldNotGetBugsList {
+        testerDao = new TesterDaoImpl();
+        try {
+            return testerDao.getBugsList(projectId);
+        } catch (SQLException e) {
+            throw new CouldNotGetBugsList("Could not get bugs list : " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void raiseNewBug(int projectId, String bugTitle, String bugDescription, SeverityLevel bugSeverityLevel) throws CantRaiseBugInCurrentProjectException {
+        testerDao = new TesterDaoImpl();
+        try {
+            List<Project> projectList = testerDao.getProjectsList(this.testerId);
+            if (projectList.get(0).getProjectId() != projectId && projectList.get(1).getProjectId() != projectId)
+                throw new CantRaiseBugInCurrentProjectException("Cant raise bug in current project");
+            int projectManagerId = projectList.get(0).getProjectId() == projectId ? projectList.get(0).getProjectManagerId() : projectList.get(1).getProjectManagerId();
+            LocalDateTime currentDateTime = LocalDateTime.now();
+            Date currentDate = java.util.Date.from(currentDateTime.atZone(java.time.ZoneId.systemDefault()).toInstant());
+
+            Bug bug = new Bug(bugTitle, bugDescription, projectId, this.testerId, projectManagerId, currentDate, BugStatus.OPEN, bugSeverityLevel);
+            testerDao.addNewBug(bug);
+        } catch (SQLException e) {
+            throw new CantRaiseBugInCurrentProjectException("Cant raise bug in current project : " + e.getMessage());
+        }
+
     }
 }

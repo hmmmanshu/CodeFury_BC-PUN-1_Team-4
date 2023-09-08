@@ -1,7 +1,11 @@
 package com.codefury.bugtracking.userinterface;
 
+import com.codefury.bugtracking.beans.Bug;
 import com.codefury.bugtracking.beans.Project;
 import com.codefury.bugtracking.beans.SeverityLevel;
+import com.codefury.bugtracking.exceptions.CantRaiseBugInCurrentProjectException;
+import com.codefury.bugtracking.exceptions.CouldNotGetBugsList;
+import com.codefury.bugtracking.exceptions.CouldNotGetProjectsListException;
 import com.codefury.bugtracking.service.TesterService;
 import com.codefury.bugtracking.service.TesterServiceImpl;
 
@@ -11,28 +15,58 @@ import java.util.Scanner;
 public class TesterUserInterfaceImpl implements TesterUserInterface {
     private final int testerId;
     private TesterService testerService;
+    private Scanner scanner;
 
     public TesterUserInterfaceImpl(int testerId) {
         this.testerId = testerId;
     }
 
     @Override
-    public void listProjects() {
+    public void showChoices() {
+        scanner = new Scanner(System.in);
+        System.out.println("Enter choice");
+        System.out.println("1. Show projects list");
+        System.out.println("2. Raise new bug");
+        System.out.println("3. Exit");
+        int choice;
+        do {
+            choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    this.listProjects();
+                    break;
+                case 2:
+                    this.raiseNewBug();
+                    break;
+                case 3:
+                    return;
+                default:
+                    System.out.println("Please enter one of the above choices");
+            }
+        } while (choice < 1 || choice > 3);
+    }
+
+    void listProjects() {
         testerService = new TesterServiceImpl(testerId);
-        List<Project> projectList = testerService.getProjectsList();
-        for (Project project : projectList) {
-            System.out.println(project);
-            // TODO: Print projects with bugs
+        try {
+            List<Project> projectList = testerService.getProjectsList();
+            for (Project project : projectList) {
+                System.out.println(project);
+                try {
+                    List<Bug> bugsList = testerService.getBugsList(project.getProjectId());
+                    for (Bug bug : bugsList) System.out.println(bug);
+                } catch (CouldNotGetBugsList e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        } catch (CouldNotGetProjectsListException e) {
+            System.out.println(e.getMessage());
         }
     }
 
-    @Override
-    public void raiseNewBug() {
+    void raiseNewBug() {
         testerService = new TesterServiceImpl(testerId);
-        Scanner scanner = new Scanner(System.in);
-        // TODO : Self Generated Bug Id
-        System.out.println("Enter bug Id");
-        int bugId = scanner.nextInt();
+        scanner = new Scanner(System.in);
         System.out.println("Enter project Id to raise bug in");
         int projectId = scanner.nextInt();
         System.out.println("Enter bug title");
@@ -66,11 +100,10 @@ public class TesterUserInterfaceImpl implements TesterUserInterface {
                     System.out.println("Please enter one of the above choices");
             }
         } while (choice < 1 || choice > 4);
-        testerService.raiseNewBug(bugId,projectId, testerId, bugTitle, bugDescription, bugSeverityLevel);
-    }
-
-    @Override
-    public void showChoices() {
-
+        try {
+            testerService.raiseNewBug(projectId, bugTitle, bugDescription, bugSeverityLevel);
+        } catch (CantRaiseBugInCurrentProjectException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

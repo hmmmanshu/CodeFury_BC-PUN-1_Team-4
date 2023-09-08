@@ -5,6 +5,7 @@ import java.util.Objects;
 
 public class Bug {
     private int bugId;
+    private int bugIdCounter = 1;
     private String bugHeading;
     private String description;
     private int projectId;
@@ -17,17 +18,14 @@ public class Bug {
     private BugStatus bugStatus;
     private SeverityLevel severityLevel;
 
-    public Bug(int bugId, String bugHeading, String description, int projectId, int createdBy, int assignedTo, Date openDate, int markForClosing, int closedBy, Date closedOn, BugStatus bugStatus, SeverityLevel severityLevel) {
-        this.bugId = bugId;
+    public Bug(String bugHeading, String description, int projectId, int createdBy, int assignedTo, Date openDate, BugStatus bugStatus, SeverityLevel severityLevel) {
+        this.bugId = bugIdCounter++;
         this.bugHeading = bugHeading;
         this.description = description;
         this.projectId = projectId;
         this.createdBy = createdBy;
         this.assignedTo = assignedTo;
         this.openDate = openDate;
-        this.markForClosing = markForClosing;
-        this.closedBy = closedBy;
-        this.closedOn = closedOn;
         this.bugStatus = bugStatus;
         this.severityLevel = severityLevel;
     }
