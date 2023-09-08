@@ -5,27 +5,28 @@ import com.codefury.bugtracking.beans.Developer;
 import com.codefury.bugtracking.beans.Project;
 import com.codefury.bugtracking.dao.DeveloperDao;
 import com.codefury.bugtracking.dao.DeveloperDaoImpl;
+import com.codefury.bugtracking.exceptions.InvalidBugMarkedForClosingException;
+import com.codefury.bugtracking.exceptions.NoProjectAssignedToDeveloper;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DeveloperServiceImpl implements DeveloperService {
     private DeveloperDao developerDao;
-    private int developerId;
+    private final int developerId;
 
     public DeveloperServiceImpl(int developerId) {
         this.developerId = developerId;
     }
 
     @Override
-    public List<Bug> getAllBugs() {
+    public List<Bug> getAllBugs() throws NoProjectAssignedToDeveloper {
         developerDao = new DeveloperDaoImpl();
         Developer developer = developerDao.getDeveloperObject(developerId);
 
-        // Can throw no project assigned to developer
-        int projectId = developer.getProjectId();
-
-        // This SQL call should populate the bugs list too
+        if (developer.getProjectId().isEmpty())
+            throw new NoProjectAssignedToDeveloper("You have no project assigned");
+        int projectId = developer.getProjectId().get();
         Project project = developerDao.getProjectObject(projectId);
         List<Bug> bugsList = new ArrayList<>();
         for (int bugId : project.getBugsList()) {
@@ -35,18 +36,19 @@ public class DeveloperServiceImpl implements DeveloperService {
     }
 
     @Override
-    public void markBugForClosing(int bugId, String remarks, int developerId) {
+    public void markBugForClosing(int bugId, String remarks, int developerId) throws NoProjectAssignedToDeveloper, InvalidBugMarkedForClosingException {
         developerDao = new DeveloperDaoImpl();
         Developer developer = developerDao.getDeveloperObject(developerId);
-        int projectId = developer.getProjectId();
+        if (developer.getProjectId().isEmpty())
+            throw new NoProjectAssignedToDeveloper("You have no project assigned");
+        int projectId = developer.getProjectId().get();
         Project project = developerDao.getProjectObject(projectId);
-        List<Bug> bugsList = new ArrayList<>();
         for (int bugId2 : project.getBugsList()) {
             if (bugId2 == bugId) {
                 developerDao.markBugForClosing(bugId, remarks, developerId);
                 return;
             }
         }
-        System.out.println("Throw new no such bug exception");
+        throw new InvalidBugMarkedForClosingException("Could not mark such bug for closing");
     }
 }

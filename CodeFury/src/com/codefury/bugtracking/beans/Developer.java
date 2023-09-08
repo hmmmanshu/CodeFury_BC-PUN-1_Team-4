@@ -3,13 +3,10 @@ package com.codefury.bugtracking.beans;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
+import java.util.Optional;
 
 public class Developer extends Employee {
-    private int projectId;
-
-    public Developer(String name) {
-        super(name);
-    }
+    private Optional<Integer> projectId;
 
     public Developer(String name, String email) {
         super(name);
@@ -24,11 +21,11 @@ public class Developer extends Employee {
         super.setDateOfJoining(dateOfJoining);
     }
 
-    public int getProjectId() {
+    public Optional<Integer> getProjectId() {
         return projectId;
     }
 
-    public void setProjectId(int projectId) {
+    public void setProjectId(Optional<Integer> projectId) {
         this.projectId = projectId;
     }
 
@@ -49,6 +46,6 @@ public class Developer extends Employee {
     public String toString() {
         return "Developer{" +
                 "projectId=" + projectId +
-                '}'+super.toString();
+                '}' + super.toString();
     }
 }
