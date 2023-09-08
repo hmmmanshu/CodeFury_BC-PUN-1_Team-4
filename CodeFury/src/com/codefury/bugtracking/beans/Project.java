@@ -5,6 +5,7 @@ import java.util.Objects;
 
 public class Project {
     private int projectId;
+    static int projectIdCounter = 1;
     private String projectName;
     private int projectManagerId;
     private List<Integer> developers;
@@ -12,14 +13,14 @@ public class Project {
     private ProjectStatus projectStatus;
     private List<Integer> bugsList;
 
-    public Project(int projectId, String projectName, int projectManagerId) {
-        this.projectId = projectId;
+    public Project(String projectName, int projectManagerId) {
+        this.projectId = projectIdCounter++;
         this.projectName = projectName;
         this.projectManagerId = projectManagerId;
     }
 
-    public Project(int projectId, String projectName, int projectManagerId, List<Integer> developers, int testerId, ProjectStatus projectStatus, List<Integer> bugsList) {
-        this.projectId = projectId;
+    public Project(String projectName, int projectManagerId, List<Integer> developers, int testerId, ProjectStatus projectStatus, List<Integer> bugsList) {
+        this.projectId = projectIdCounter++;
         this.projectName = projectName;
         this.projectManagerId = projectManagerId;
         this.developers = developers;

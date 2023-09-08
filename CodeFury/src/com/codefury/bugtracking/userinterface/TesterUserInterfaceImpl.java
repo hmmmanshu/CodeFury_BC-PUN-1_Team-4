@@ -18,7 +18,7 @@ public class TesterUserInterfaceImpl implements TesterUserInterface {
 
     @Override
     public void listProjects() {
-        testerService = new TesterServiceImpl();
+        testerService = new TesterServiceImpl(testerId);
         List<Project> projectList = testerService.getProjectsList();
         for (Project project : projectList) {
             System.out.println(project);
@@ -28,11 +28,13 @@ public class TesterUserInterfaceImpl implements TesterUserInterface {
 
     @Override
     public void raiseNewBug() {
-        testerService = new TesterServiceImpl();
+        testerService = new TesterServiceImpl(testerId);
         Scanner scanner = new Scanner(System.in);
         // TODO : Self Generated Bug Id
         System.out.println("Enter bug Id");
         int bugId = scanner.nextInt();
+        System.out.println("Enter project Id to raise bug in");
+        int projectId = scanner.nextInt();
         System.out.println("Enter bug title");
         String bugTitle = scanner.nextLine();
         System.out.println("Enter bug description");
@@ -64,6 +66,6 @@ public class TesterUserInterfaceImpl implements TesterUserInterface {
                     System.out.println("Please enter one of the above choices");
             }
         } while (choice < 1 || choice > 4);
-        testerService.raiseNewBug(bugId, testerId, bugTitle, bugDescription, bugSeverityLevel);
+        testerService.raiseNewBug(bugId,projectId, testerId, bugTitle, bugDescription, bugSeverityLevel);
     }
 }
