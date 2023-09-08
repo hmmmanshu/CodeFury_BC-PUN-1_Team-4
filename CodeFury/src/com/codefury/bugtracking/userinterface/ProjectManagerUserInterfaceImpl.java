@@ -1,12 +1,10 @@
 package com.codefury.bugtracking.userinterface;
 
 import com.codefury.bugtracking.beans.Project;
-import com.codefury.bugtracking.beans.ProjectStatus;
 import com.codefury.bugtracking.beans.Role;
 import com.codefury.bugtracking.exceptions.*;
 import com.codefury.bugtracking.service.ProjectManagerService;
 import com.codefury.bugtracking.service.ProjectManagerServiceImpl;
-import com.sun.security.auth.module.NTSystem;
 
 import java.util.List;
 import java.util.Scanner;
@@ -57,8 +55,7 @@ public class ProjectManagerUserInterfaceImpl implements ProjectManagerUserInterf
         } while (choice >= 1 && choice <= 5);
     }
 
-    @Override
-    public void addNewProject() {
+    void addNewProject() {
         projectManagerService = new ProjectManagerServiceImpl();
         scanner = new Scanner(System.in);
         System.out.println("Enter Project Name");
@@ -73,23 +70,21 @@ public class ProjectManagerUserInterfaceImpl implements ProjectManagerUserInterf
         }
     }
 
-    @Override
-    public void viewProjectsDirectory() {
+    void viewProjectsDirectory() {
         projectManagerService = new ProjectManagerServiceImpl();
         scanner = new Scanner(System.in);
-        List<Project> projectList = null;
+
         try {
-            projectList = projectManagerService.getProjectsList();
+            List<Project> projectList = projectManagerService.getProjectsList();
+            for (Project project : projectList) {
+                System.out.println(project);
+            }
         } catch (CouldNotGetProjectsListException e) {
             System.out.println(e.getMessage());
         }
-        for (Project project : projectList) {
-            System.out.println(project);
-        }
     }
 
-    @Override
-    public void closeBug() {
+    void closeBug() {
         projectManagerService = new ProjectManagerServiceImpl();
         scanner = new Scanner(System.in);
         System.out.println("Enter bug id to be close");
@@ -101,8 +96,7 @@ public class ProjectManagerUserInterfaceImpl implements ProjectManagerUserInterf
         }
     }
 
-    @Override
-    public void changeProjectStatus() {
+    void changeProjectStatus() {
         projectManagerService = new ProjectManagerServiceImpl();
         scanner = new Scanner(System.in);
         System.out.println("Enter project id to mark as completed");
@@ -114,8 +108,7 @@ public class ProjectManagerUserInterfaceImpl implements ProjectManagerUserInterf
         }
     }
 
-    @Override
-    public void addEmployeeToProject() {
+    void addEmployeeToProject() {
         projectManagerService = new ProjectManagerServiceImpl();
         scanner = new Scanner(System.in);
         System.out.println("Enter project id to add a new employee to");
