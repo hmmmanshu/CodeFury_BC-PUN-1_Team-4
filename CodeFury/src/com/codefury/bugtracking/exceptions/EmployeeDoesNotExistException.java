@@ -7,8 +7,4 @@ public class EmployeeDoesNotExistException extends Exception {
     public EmployeeDoesNotExistException(String message) {
         super(message);
     }
-
-    public EmployeeDoesNotExistException() {
-        super();
-    }
 }
