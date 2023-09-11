@@ -8,7 +8,9 @@ import java.util.List;
 
 public interface ProjectManagerService {
     void addNewProject(Project project) throws CouldNotAddProjectException;
+
     List<Project> getProjectsList() throws CouldNotGetProjectsListException;
+
     void closeBug(int bugId) throws CouldNotCloseBugException;
 
     void changeProjectStatus(int projectId) throws CouldNotChangeProjectStatus;

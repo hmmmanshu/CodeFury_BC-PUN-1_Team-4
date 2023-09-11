@@ -9,7 +9,9 @@ import java.util.List;
 
 public interface ProjectManagerDao {
     void addNewProject(Project project) throws SQLException;
+
     List<Project> getProjectsList() throws SQLException;
+
     void closeBug(int bugId) throws SQLException;
 
     void changeProjectStatus(int projectId, ProjectStatus completed) throws SQLException;

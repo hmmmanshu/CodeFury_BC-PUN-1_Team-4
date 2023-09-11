@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class Bug {
     private int bugId;
-    private int bugIdCounter = 1;
+    private static int bugIdCounter = 1;
     private String bugHeading;
     private String description;
     private int projectId;
