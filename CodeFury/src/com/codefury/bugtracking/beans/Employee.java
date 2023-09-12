@@ -4,11 +4,13 @@ import java.util.Date;
 
 public abstract class Employee {
     private static int employeeIdCounter = 1;
-    private final int employeeId;
+    private int employeeId;
     private String name;
     private String email;
     private Date dateOfJoining;
     private String password;
+
+    public Employee(){}
 
     public Employee(String name) {
         this.employeeId = employeeIdCounter++;
