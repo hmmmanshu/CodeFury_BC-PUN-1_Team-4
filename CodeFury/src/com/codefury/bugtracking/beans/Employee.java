@@ -1,5 +1,6 @@
 package com.codefury.bugtracking.beans;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public abstract class Employee {
@@ -10,11 +11,18 @@ public abstract class Employee {
     private Date dateOfJoining;
     private String password;
 
-    public Employee(){}
+    public Employee() {
+        this.employeeId = employeeIdCounter++;
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        this.dateOfJoining = java.util.Date.from(currentDateTime.atZone(java.time.ZoneId.systemDefault()).toInstant());
+    }
 
     public Employee(String name) {
         this.employeeId = employeeIdCounter++;
         this.name = name;
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        this.dateOfJoining = java.util.Date.from(currentDateTime.atZone(java.time.ZoneId.systemDefault()).toInstant());
+
     }
 
     public int getEmployeeId() {

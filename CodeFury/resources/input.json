@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Himanshu",
+    "type": "Developer",
+    "email": "himanshu@gmail.com",
+    "password": "password"
+  },
+  {
+    "name": "Priyanshu",
+    "type": "Developer",
+    "email": "priyanshu@gmail.com",
+    "password": "password"
+  },
+  {
+    "name": "Divyanshu",
+    "type": "Tester",
+    "email": "divyanshu@gmail.com",
+    "password": "password"
+  },
+  {
+    "name": "Shivanshu",
+    "type": "Project Manager",
+    "email": "shivanshu@gmail.com",
+    "password": "password"
+  },
+  {
+    "name": "Devanshu",
+    "type": "Tester",
+    "email": "devanshu@gmail.com",
+    "password": "password"
+  }
+]

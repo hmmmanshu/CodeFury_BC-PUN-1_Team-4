@@ -11,8 +11,6 @@ public class Developer extends Employee {
     public Developer(String name, String email) {
         super(name);
         super.setEmail(email);
-        LocalDateTime currentDateTime = LocalDateTime.now();
-        super.setDateOfJoining(java.util.Date.from(currentDateTime.atZone(java.time.ZoneId.systemDefault()).toInstant()));
     }
 
     public Developer(String name, String email, Date dateOfJoining) {
