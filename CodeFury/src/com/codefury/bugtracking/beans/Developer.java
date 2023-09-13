@@ -1,6 +1,5 @@
 package com.codefury.bugtracking.beans;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
 import java.util.Optional;

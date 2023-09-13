@@ -11,8 +11,11 @@ public interface Queries {
     String INSERT_INTO_PROJECT = "INSERT INTO project (projectId, projectName, projectManagerId, projectStatus) VALUES (?, ?, ?, ?, ?);";
     String GET_PROJECTS_LIST_FOR_PROJECT_MANAGER = "SELECT * FROM project WHERE projectManagerId = ?;";
     String GET_BUGS_FOR_PROJECT = "SELECT * FROM bugs WHERE projectManagerId = ?;";
-    String CLOSE_BUG = "UPDATE bugs SET bugStatus = ? WHERE bugId = ?";
-    String CHANGE_PROJECT_STATUS = "UPDATE project SET projectStatus = ? WHERE projectId ?";
+    String GET_DEVELOPER_OBJECT = "SELECT * FROM developer WHERE employeeId = ?;";
+    String GET_EMPLOYEE_OBJECT = "SELECT * FROM employee WHERE employeeId = ?;";
     String ADD_DEVELOPER_TO_PROJECT = "UPDATE developer SET projectId = ? WHERE employeeId = ?;";
     String ADD_TESTER_TO_PROJECT = "UPDATE project SET testerId = ? WHERE projectId = ?;";
+    String CLOSE_BUG = "UPDATE bugs SET bugStatus = ? WHERE bugId = ?";
+    String CHANGE_PROJECT_STATUS = "UPDATE project SET projectStatus = ? WHERE projectId ?";
+    String MARK_BUG_FOR_CLOSING = "UPDATE bugs SET markForClosing = '?' where bugId = ?;";
 }
