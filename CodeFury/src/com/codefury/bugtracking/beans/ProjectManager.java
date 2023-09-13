@@ -1,6 +1,5 @@
 package com.codefury.bugtracking.beans;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -10,7 +9,7 @@ public class ProjectManager extends Employee {
 
     private List<Integer> projects;
 
-    public ProjectManager(int employeeId, String name) {
+    public ProjectManager() {
         super(name);
         projects = new ArrayList<>();
     }

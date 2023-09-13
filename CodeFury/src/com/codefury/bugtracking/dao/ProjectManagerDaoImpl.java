@@ -110,7 +110,12 @@ public class ProjectManagerDaoImpl implements ProjectManagerDao {
                             bugStatus1 = BugStatus.CLOSED;
                         int bugSeverityLevel = resultSet1.getInt("severityLevel");
                         SeverityLevel severityLevel = getSeverityLevel(bugSeverityLevel);
-                        project.addBug(new Bug(bugHeading, bugHeading, projectId2, createdBy, assignedTo, openDate, bugStatus1, severityLevel));
+                        Bug bug = new Bug(bugHeading, bugHeading, projectId2, createdBy, assignedTo, openDate, bugStatus1, severityLevel);
+                        bug.setBugId(bugId);
+                        bug.setMarkForClosing(markForClosing);
+                        bug.setClosedOn(closedOn);
+                        bug.setClosedBy(closedBy);
+                        project.addBug(bug);
                     }
                 }
                 projectList.add(project);

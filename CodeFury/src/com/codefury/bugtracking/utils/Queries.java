@@ -9,11 +9,15 @@ public interface Queries {
     String INSERT_INTO_TESTER = "INSERT INTO tester(employeeId) VALUES(?);";
     String INSERT_INTO_PROJECT_MANAGER = "INSERT INTO tester(employeeId) VALUES(?);";
     String INSERT_INTO_PROJECT = "INSERT INTO project (projectId, projectName, projectManagerId, projectStatus) VALUES (?, ?, ?, ?, ?);";
+    String INSERT_INTO_BUGS = "INSERT INTO BUGS (bugId, bugHeading, projectId, createdBy, assignedTo, openDate, markForClosing, closedBy, closedOn, bugStatus, severityLevel) VALUES (?,'?',?,?,?,?,?,?,?,?,?);";
     String GET_PROJECTS_LIST_FOR_PROJECT_MANAGER = "SELECT * FROM project WHERE projectManagerId = ?;";
+    String GET_PROJECTS_LIST_FOR_TESTER = "SELECT * FROM project WHERE testerId = ?;";
     String GET_BUGS_FOR_PROJECT = "SELECT * FROM bugs WHERE projectManagerId = ?;";
     String GET_DEVELOPER_OBJECT = "SELECT * FROM developer WHERE employeeId = ?;";
     String GET_EMPLOYEE_OBJECT = "SELECT * FROM employee WHERE employeeId = ?;";
+    String GET_EMPLOYEE_SPECIFIC_OBJECT = "SELECT * FROM ? WHERE employeeId = ?;";
     String GET_PROJECT_OBJECT = "SELECT * FROM project WHERE projectId = ?;";
+    String GET_BUGS_FOR_TESTER = "SELECT * FROM bugs WHERE projectId = ?;";
     String ADD_DEVELOPER_TO_PROJECT = "UPDATE developer SET projectId = ? WHERE employeeId = ?;";
     String ADD_TESTER_TO_PROJECT = "UPDATE project SET testerId = ? WHERE projectId = ?;";
     String CLOSE_BUG = "UPDATE bugs SET bugStatus = ? WHERE bugId = ?";

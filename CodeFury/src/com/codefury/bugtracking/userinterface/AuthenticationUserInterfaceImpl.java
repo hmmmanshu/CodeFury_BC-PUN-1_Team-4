@@ -10,12 +10,19 @@ import com.codefury.bugtracking.exceptions.PasswordsDoNotMatchException;
 import com.codefury.bugtracking.service.AuthenticationService;
 import com.codefury.bugtracking.service.AuthenticationServiceImpl;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
+/**
+ * Implementation of the AuthenticationUserInterface for handling user authentication.
+ */
 public class AuthenticationUserInterfaceImpl implements AuthenticationUserInterface {
     private Scanner scanner;
     private AuthenticationService authenticationService;
 
+    /**
+     * Method to perform a login operation.
+     */
     @Override
     public void login() {
         authenticationService = new AuthenticationServiceImpl();
@@ -23,14 +30,17 @@ public class AuthenticationUserInterfaceImpl implements AuthenticationUserInterf
         String password;
         scanner = new Scanner(System.in);
 
+        // Prompt for user input
         System.out.println("Enter employeeId");
         employeeId = scanner.nextInt();
         System.out.println("Enter password");
         password = scanner.next();
 
         try {
+            // Validate user credentials
             Employee employee = authenticationService.validateCredentials(employeeId, password);
 
+            // Redirect user based on their role
             if (employee instanceof ProjectManager) {
                 ProjectManagerUserInterface projectManagerUserInterface = new ProjectManagerUserInterfaceImpl(employeeId);
                 projectManagerUserInterface.showChoices();
@@ -43,9 +53,14 @@ public class AuthenticationUserInterfaceImpl implements AuthenticationUserInterf
             }
         } catch (InvalidCredentialsException | EmployeeDoesNotExistException e) {
             System.out.println(e.getMessage());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
+    /**
+     * Method to perform a registration operation.
+     */
     @Override
     public void register() {
         authenticationService = new AuthenticationServiceImpl();
@@ -58,6 +73,7 @@ public class AuthenticationUserInterfaceImpl implements AuthenticationUserInterf
         String confirmationPassword = scanner.next();
 
         try {
+            // Register a new user
             authenticationService.addNewCredentials(employeeId, password, confirmationPassword);
             System.out.println("New user added to directory successfully");
         } catch (PasswordsDoNotMatchException | CouldNotAddEmployeeException | EmployeeDoesNotExistException e) {

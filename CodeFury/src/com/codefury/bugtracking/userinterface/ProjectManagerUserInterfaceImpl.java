@@ -9,16 +9,26 @@ import com.codefury.bugtracking.service.ProjectManagerServiceImpl;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Implementation of the ProjectManagerUserInterface for handling project manager-specific interactions.
+ */
 public class ProjectManagerUserInterfaceImpl implements ProjectManagerUserInterface {
     private Scanner scanner;
     private final int projectManagerId;
     private ProjectManagerService projectManagerService;
 
+    /**
+     * Constructor to create a ProjectManagerUserInterfaceImpl with the project manager's ID.
+     *
+     * @param projectManagerId The ID of the project manager.
+     */
     public ProjectManagerUserInterfaceImpl(int projectManagerId) {
         this.projectManagerId = projectManagerId;
     }
 
-
+    /**
+     * Method to display the available choices/options for a project manager.
+     */
     @Override
     public void showChoices() {
         int choice;
@@ -55,6 +65,9 @@ public class ProjectManagerUserInterfaceImpl implements ProjectManagerUserInterf
         } while (choice >= 1 && choice <= 5);
     }
 
+    /**
+     * Method to add a new project.
+     */
     void addNewProject() {
         projectManagerService = new ProjectManagerServiceImpl(this.projectManagerId);
         scanner = new Scanner(System.in);
@@ -70,6 +83,9 @@ public class ProjectManagerUserInterfaceImpl implements ProjectManagerUserInterf
         }
     }
 
+    /**
+     * Method to view the project directory listing all projects.
+     */
     void viewProjectsDirectory() {
         projectManagerService = new ProjectManagerServiceImpl(this.projectManagerId);
         scanner = new Scanner(System.in);
@@ -84,6 +100,9 @@ public class ProjectManagerUserInterfaceImpl implements ProjectManagerUserInterf
         }
     }
 
+    /**
+     * Method to close a bug.
+     */
     void closeBug() {
         projectManagerService = new ProjectManagerServiceImpl(this.projectManagerId);
         scanner = new Scanner(System.in);
@@ -96,6 +115,9 @@ public class ProjectManagerUserInterfaceImpl implements ProjectManagerUserInterf
         }
     }
 
+    /**
+     * Method to change the status of a project to completed.
+     */
     void changeProjectStatus() {
         projectManagerService = new ProjectManagerServiceImpl(this.projectManagerId);
         scanner = new Scanner(System.in);
@@ -108,6 +130,9 @@ public class ProjectManagerUserInterfaceImpl implements ProjectManagerUserInterf
         }
     }
 
+    /**
+     * Method to add an employee to a project.
+     */
     void addEmployeeToProject() {
         projectManagerService = new ProjectManagerServiceImpl(this.projectManagerId);
         scanner = new Scanner(System.in);

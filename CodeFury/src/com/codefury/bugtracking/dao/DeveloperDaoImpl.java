@@ -143,7 +143,12 @@ public class DeveloperDaoImpl implements DeveloperDao {
                 int bugSeverityLevel = resultSet1.getInt("severityLevel");
                 SeverityLevel severityLevel = getSeverityLevel(bugSeverityLevel);
                 if (bugId1 == bugId) {
-                    return new Bug(bugHeading, bugHeading, projectId, createdBy, assignedTo, openDate, bugStatus1, severityLevel);
+                    Bug bug = new Bug(bugHeading, bugHeading, projectId, createdBy, assignedTo, openDate, bugStatus1, severityLevel);
+                    bug.setBugId(bugId);
+                    bug.setMarkForClosing(markForClosing);
+                    bug.setClosedOn(closedOn);
+                    bug.setClosedBy(closedBy);
+                    return bug;
                 }
             }
             throw new SQLException("Could not fetch bug");

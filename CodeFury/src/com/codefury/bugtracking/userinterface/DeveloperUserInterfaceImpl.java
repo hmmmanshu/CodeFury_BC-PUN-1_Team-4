@@ -9,15 +9,26 @@ import com.codefury.bugtracking.service.DeveloperServiceImpl;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Implementation of the DeveloperUserInterface for handling developer-specific interactions.
+ */
 public class DeveloperUserInterfaceImpl implements DeveloperUserInterface {
     private DeveloperService developerService;
     private final int developerId;
     private Scanner scanner;
 
+    /**
+     * Constructor to create a DeveloperUserInterfaceImpl with the developer's ID.
+     *
+     * @param developerId The ID of the developer.
+     */
     public DeveloperUserInterfaceImpl(int developerId) {
         this.developerId = developerId;
     }
 
+    /**
+     * Method to display the available choices/options for a developer.
+     */
     @Override
     public void showChoices() {
         scanner = new Scanner(System.in);
@@ -43,6 +54,9 @@ public class DeveloperUserInterfaceImpl implements DeveloperUserInterface {
         } while (choice < 1 || choice > 3);
     }
 
+    /**
+     * Method to list all bugs assigned to the developer.
+     */
     void listAllBugs() {
         developerService = new DeveloperServiceImpl(developerId);
         List<Bug> bugs = null;
@@ -56,6 +70,9 @@ public class DeveloperUserInterfaceImpl implements DeveloperUserInterface {
         }
     }
 
+    /**
+     * Method to mark a bug for closing by the developer.
+     */
     void markBugForClosing() {
         developerService = new DeveloperServiceImpl(developerId);
         scanner = new Scanner(System.in);

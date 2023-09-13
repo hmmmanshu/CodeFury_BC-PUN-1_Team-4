@@ -12,11 +12,19 @@ import com.codefury.bugtracking.service.TesterServiceImpl;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * A user interface implementation for testers.
+ */
 public class TesterUserInterfaceImpl implements TesterUserInterface {
     private final int testerId;
     private TesterService testerService;
     private Scanner scanner;
 
+    /**
+     * Constructor to initialize the TesterUserInterfaceImpl.
+     *
+     * @param testerId The unique identifier of the tester.
+     */
     public TesterUserInterfaceImpl(int testerId) {
         this.testerId = testerId;
     }
@@ -46,6 +54,9 @@ public class TesterUserInterfaceImpl implements TesterUserInterface {
         } while (choice < 1 || choice > 3);
     }
 
+    /**
+     * Lists the projects and associated bugs for the tester.
+     */
     void listProjects() {
         testerService = new TesterServiceImpl(testerId);
         try {
@@ -64,6 +75,9 @@ public class TesterUserInterfaceImpl implements TesterUserInterface {
         }
     }
 
+    /**
+     * Raises a new bug for a project.
+     */
     void raiseNewBug() {
         testerService = new TesterServiceImpl(testerId);
         scanner = new Scanner(System.in);
@@ -87,10 +101,10 @@ public class TesterUserInterfaceImpl implements TesterUserInterface {
                     bugSeverityLevel = SeverityLevel.TRIVIAL;
                     break;
                 case 2:
-                    bugSeverityLevel = SeverityLevel.MINOR;
+                    bugSeverityLevel = SeverityLevel.MAJOR;
                     break;
                 case 3:
-                    bugSeverityLevel = SeverityLevel.MAJOR;
+                    bugSeverityLevel = SeverityLevel.MINOR;
                     break;
                 case 4:
                     bugSeverityLevel = SeverityLevel.CRITICAL;

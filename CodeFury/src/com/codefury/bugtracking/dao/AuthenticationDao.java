@@ -6,7 +6,7 @@ import com.codefury.bugtracking.exceptions.EmployeeDoesNotExistException;
 import java.sql.SQLException;
 
 public interface AuthenticationDao {
-    Employee getEmployeeObject(int employeeId) throws EmployeeDoesNotExistException;
+    Employee getEmployeeObject(int employeeId) throws EmployeeDoesNotExistException, SQLException;
 
     void addCredentials(Employee employee, String password) throws SQLException;
 }
