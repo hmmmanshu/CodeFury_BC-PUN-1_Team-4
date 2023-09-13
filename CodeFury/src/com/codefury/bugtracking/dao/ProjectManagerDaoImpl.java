@@ -120,7 +120,7 @@ public class ProjectManagerDaoImpl implements ProjectManagerDao {
     }
 
     /**
-     * Get the severity level of bug as the ordinal value and convert bact to Enum
+     * Get the severity level of bug as the ordinal value and convert back to Enum
      *
      * @param bugSeverityLevel ordinal value of the severity level
      * @return enum of severity level

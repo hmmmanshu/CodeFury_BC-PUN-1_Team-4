@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ProjectManagerServiceImpl implements ProjectManagerService {
     private ProjectManagerDao projectManagerDao;
-    private int projectManagerId;
+    private final int projectManagerId;
 
     public ProjectManagerServiceImpl(int projectManagerId){
         this.projectManagerId = projectManagerId;

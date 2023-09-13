@@ -13,6 +13,7 @@ public interface Queries {
     String GET_BUGS_FOR_PROJECT = "SELECT * FROM bugs WHERE projectManagerId = ?;";
     String GET_DEVELOPER_OBJECT = "SELECT * FROM developer WHERE employeeId = ?;";
     String GET_EMPLOYEE_OBJECT = "SELECT * FROM employee WHERE employeeId = ?;";
+    String GET_PROJECT_OBJECT = "SELECT * FROM project WHERE projectId = ?;";
     String ADD_DEVELOPER_TO_PROJECT = "UPDATE developer SET projectId = ? WHERE employeeId = ?;";
     String ADD_TESTER_TO_PROJECT = "UPDATE project SET testerId = ? WHERE projectId = ?;";
     String CLOSE_BUG = "UPDATE bugs SET bugStatus = ? WHERE bugId = ?";

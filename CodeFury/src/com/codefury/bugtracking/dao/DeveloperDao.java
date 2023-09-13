@@ -11,7 +11,7 @@ public interface DeveloperDao {
 
     Developer getDeveloperObject(int developerId) throws SQLException;
 
-    Project getProjectObject(int projectId);
+    Project getProjectObject(int projectId) throws SQLException;
 
-    Bug getBugObject(int bugId);
+    Bug getBugObject(int bugId) throws SQLException;
 }
