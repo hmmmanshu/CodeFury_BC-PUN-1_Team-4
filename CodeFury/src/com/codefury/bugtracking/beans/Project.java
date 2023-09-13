@@ -5,10 +5,9 @@ import java.util.Objects;
 
 public class Project {
     private int projectId;
-    static int projectIdCounter = 1;
+    private static int projectIdCounter = 1;
     private String projectName;
     private int projectManagerId;
-    private List<Integer> developers;
     private int testerId;
     private ProjectStatus projectStatus;
     private List<Integer> bugsList;
@@ -23,7 +22,6 @@ public class Project {
         this.projectId = projectIdCounter++;
         this.projectName = projectName;
         this.projectManagerId = projectManagerId;
-        this.developers = developers;
         this.testerId = testerId;
         this.projectStatus = projectStatus;
         this.bugsList = bugsList;
@@ -53,14 +51,6 @@ public class Project {
         this.projectManagerId = projectManagerId;
     }
 
-    public List<Integer> getDevelopers() {
-        return developers;
-    }
-
-    public void setDevelopers(List<Integer> developers) {
-        this.developers = developers;
-    }
-
     public int getTesterId() {
         return testerId;
     }
@@ -85,17 +75,21 @@ public class Project {
         this.bugsList = bugsList;
     }
 
+    public void addBug(Bug bug){
+        this.bugsList.add(bug.getBugId());
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Project project = (Project) o;
-        return projectId == project.projectId && projectManagerId == project.projectManagerId && testerId == project.testerId && Objects.equals(projectName, project.projectName) && Objects.equals(developers, project.developers) && projectStatus == project.projectStatus && Objects.equals(bugsList, project.bugsList);
+        return projectId == project.projectId && projectManagerId == project.projectManagerId && testerId == project.testerId && Objects.equals(projectName, project.projectName) && projectStatus == project.projectStatus && Objects.equals(bugsList, project.bugsList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(projectId, projectName, projectManagerId, developers, testerId, projectStatus, bugsList);
+        return Objects.hash(projectId, projectName, projectManagerId, testerId, projectStatus, bugsList);
     }
 
     @Override
@@ -104,7 +98,6 @@ public class Project {
                 "projectId=" + projectId +
                 ", projectName='" + projectName + '\'' +
                 ", projectManagerId=" + projectManagerId +
-                ", developers=" + developers +
                 ", testerId=" + testerId +
                 ", projectStatus=" + projectStatus +
                 ", bugsList=" + bugsList +

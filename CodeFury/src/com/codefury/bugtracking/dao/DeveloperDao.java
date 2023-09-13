@@ -5,7 +5,7 @@ import com.codefury.bugtracking.beans.Developer;
 import com.codefury.bugtracking.beans.Project;
 
 public interface DeveloperDao {
-    void getBugsList();
+    void getBugsList(int projectId);
 
     void markBugForClosing(int bugId, String remarks, int developerId);
 

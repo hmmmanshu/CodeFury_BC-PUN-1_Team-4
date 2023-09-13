@@ -56,7 +56,7 @@ public class ProjectManagerUserInterfaceImpl implements ProjectManagerUserInterf
     }
 
     void addNewProject() {
-        projectManagerService = new ProjectManagerServiceImpl();
+        projectManagerService = new ProjectManagerServiceImpl(this.projectManagerId);
         scanner = new Scanner(System.in);
         System.out.println("Enter Project Name");
         String projectName = scanner.nextLine();
@@ -71,7 +71,7 @@ public class ProjectManagerUserInterfaceImpl implements ProjectManagerUserInterf
     }
 
     void viewProjectsDirectory() {
-        projectManagerService = new ProjectManagerServiceImpl();
+        projectManagerService = new ProjectManagerServiceImpl(this.projectManagerId);
         scanner = new Scanner(System.in);
 
         try {
@@ -85,7 +85,7 @@ public class ProjectManagerUserInterfaceImpl implements ProjectManagerUserInterf
     }
 
     void closeBug() {
-        projectManagerService = new ProjectManagerServiceImpl();
+        projectManagerService = new ProjectManagerServiceImpl(this.projectManagerId);
         scanner = new Scanner(System.in);
         System.out.println("Enter bug id to be close");
         int bugId = scanner.nextInt();
@@ -97,7 +97,7 @@ public class ProjectManagerUserInterfaceImpl implements ProjectManagerUserInterf
     }
 
     void changeProjectStatus() {
-        projectManagerService = new ProjectManagerServiceImpl();
+        projectManagerService = new ProjectManagerServiceImpl(this.projectManagerId);
         scanner = new Scanner(System.in);
         System.out.println("Enter project id to mark as completed");
         int projectId = scanner.nextInt();
@@ -109,7 +109,7 @@ public class ProjectManagerUserInterfaceImpl implements ProjectManagerUserInterf
     }
 
     void addEmployeeToProject() {
-        projectManagerService = new ProjectManagerServiceImpl();
+        projectManagerService = new ProjectManagerServiceImpl(this.projectManagerId);
         scanner = new Scanner(System.in);
         System.out.println("Enter project id to add a new employee to");
         int projectId = scanner.nextInt();

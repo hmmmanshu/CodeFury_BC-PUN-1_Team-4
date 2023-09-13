@@ -12,10 +12,15 @@ import java.util.List;
 
 public class ProjectManagerServiceImpl implements ProjectManagerService {
     private ProjectManagerDao projectManagerDao;
+    private int projectManagerId;
+
+    public ProjectManagerServiceImpl(int projectManagerId){
+        this.projectManagerId = projectManagerId;
+    }
 
     @Override
     public void addNewProject(Project project) throws CouldNotAddProjectException {
-        projectManagerDao = new ProjectManagerDaoImpl();
+        projectManagerDao = new ProjectManagerDaoImpl(this.projectManagerId);
         try {
             projectManagerDao.addNewProject(project);
         } catch (SQLException e) {
@@ -25,7 +30,7 @@ public class ProjectManagerServiceImpl implements ProjectManagerService {
 
     @Override
     public List<Project> getProjectsList() throws CouldNotGetProjectsListException {
-        projectManagerDao = new ProjectManagerDaoImpl();
+        projectManagerDao = new ProjectManagerDaoImpl(this.projectManagerId);
         try {
             return projectManagerDao.getProjectsList();
         } catch (SQLException e) {
@@ -35,7 +40,7 @@ public class ProjectManagerServiceImpl implements ProjectManagerService {
 
     @Override
     public void closeBug(int bugId) throws CouldNotCloseBugException {
-        projectManagerDao = new ProjectManagerDaoImpl();
+        projectManagerDao = new ProjectManagerDaoImpl(this.projectManagerId);
         try {
             projectManagerDao.closeBug(bugId);
         } catch (SQLException e) {
@@ -45,7 +50,7 @@ public class ProjectManagerServiceImpl implements ProjectManagerService {
 
     @Override
     public void changeProjectStatus(int projectId) throws CouldNotChangeProjectStatus {
-        projectManagerDao = new ProjectManagerDaoImpl();
+        projectManagerDao = new ProjectManagerDaoImpl(this.projectManagerId);
         try {
             Project project = projectManagerDao.getProjectsList()
                     .stream()
@@ -63,7 +68,7 @@ public class ProjectManagerServiceImpl implements ProjectManagerService {
 
     @Override
     public void addEmployeeToProject(int projectId, int employeeId, Role role) throws CouldNotAddEmployeeException {
-        projectManagerDao = new ProjectManagerDaoImpl();
+        projectManagerDao = new ProjectManagerDaoImpl(this.projectManagerId);
         try {
             projectManagerDao.addEmployeeToProject(projectId, employeeId, role);
         } catch (SQLException e) {

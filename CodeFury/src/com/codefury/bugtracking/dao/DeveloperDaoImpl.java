@@ -4,9 +4,10 @@ import com.codefury.bugtracking.beans.Bug;
 import com.codefury.bugtracking.beans.Developer;
 import com.codefury.bugtracking.beans.Project;
 
-public class DeveloperDaoImpl implements DeveloperDao{
+public class DeveloperDaoImpl implements DeveloperDao {
+
     @Override
-    public void getBugsList() {
+    public void getBugsList(int projectId) {
 
     }
 
