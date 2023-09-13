@@ -12,7 +12,7 @@ public class Bug {
     private int createdBy;
     private int assignedTo;
     private Date openDate;
-    private int markForClosing;
+    private String markForClosing;
     private int closedBy;
     private Date closedOn;
     private BugStatus bugStatus;
@@ -86,11 +86,11 @@ public class Bug {
         this.openDate = openDate;
     }
 
-    public int getMarkForClosing() {
+    public String getMarkForClosing() {
         return markForClosing;
     }
 
-    public void setMarkForClosing(int markForClosing) {
+    public void setMarkForClosing(String markForClosing) {
         this.markForClosing = markForClosing;
     }
 
