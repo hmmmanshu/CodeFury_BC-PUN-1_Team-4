@@ -24,7 +24,7 @@ public class AuthenticationDaoImpl implements AuthenticationDao {
     /**
      * Find the employee if exists, and which kind of employee is asked to be logged in to the system
      *
-     * @param employeeId employee Id of the person to be logged in
+     * @param employeeId employee id of the person to be logged in
      * @return Employee object that has logged in
      * @throws EmployeeDoesNotExistException employee not found in database
      * @throws SQLException                  could not perform a specific SQL function
@@ -65,15 +65,24 @@ public class AuthenticationDaoImpl implements AuthenticationDao {
                 Date dateOfJoining = resultSet.getDate("dateOfJoining");
                 String email = resultSet.getString("email");
                 String password = resultSet.getString("password");
-                return new ProjectManager();
+                return new ProjectManager(name, email, dateOfJoining);
             }
-
-
         }
     }
 
+    /**
+     * Adds credentials for the given employee.
+     *
+     * @param employee The employee object.
+     * @param password The password for the employee.
+     * @throws SQLException If there is a problem with the database connection.
+     */
     @Override
     public void addCredentials(Employee employee, String password) throws SQLException {
-
+        try (PreparedStatement preparedStatement = connection.prepareStatement(Queries.ADD_CREDENTIALS)) {
+            preparedStatement.setInt(1, employee.getEmployeeId());
+            preparedStatement.setString(2, password);
+            preparedStatement.executeUpdate();
+        }
     }
 }

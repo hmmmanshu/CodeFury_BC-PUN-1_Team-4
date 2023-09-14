@@ -4,7 +4,6 @@ import com.codefury.bugtracking.beans.*;
 import com.codefury.bugtracking.utils.DatabaseConnection;
 import com.codefury.bugtracking.utils.Queries;
 
-import javax.xml.crypto.Data;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,41 +12,40 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Implementation of the Tester Data Access Object (DAO) interface that provides database operations for testers.
+ */
 public class TesterDaoImpl implements TesterDao {
 
     private final Connection connection;
 
+    /**
+     * Constructs a new TesterDaoImpl instance and initializes the database connection.
+     */
     public TesterDaoImpl() {
         this.connection = DatabaseConnection.getConnection();
     }
 
     /**
-     * Fetch project list from the database using the relevant query from <br>
-     * com.codefury.bugtracking.utils.Queries and execute using a prepared statement
+     * Fetches a list of projects handled by a tester from the database.
      *
-     * @return list of the projects that the tester handles
-     * @throws SQLException could not fetch the project list
+     * @param testerId The ID of the tester.
+     * @return A list of projects that the tester handles.
+     * @throws SQLException If there is an error in fetching the project list.
      */
     @Override
     public List<Project> getProjectsList(int testerId) throws SQLException {
-        // use try with resources to create prepared statement to execute the query
         try (PreparedStatement preparedStatement = connection.prepareStatement(Queries.GET_PROJECTS_LIST_FOR_TESTER)) {
-
-            // set the variable in the prepared statement
             preparedStatement.setInt(1, testerId);
-
-            // get the resultSet for the query
             ResultSet resultSet = preparedStatement.executeQuery();
             List<Project> projectList = new ArrayList<>();
 
-            // while there are more rows to be read
             while (resultSet.next()) {
                 int projectId = resultSet.getInt("projectId");
                 String projectTitle = resultSet.getString("projectName");
                 int projectManagerId = resultSet.getInt("projectManagerId");
                 int projectStatus = resultSet.getInt("projectStatus");
 
-                // convert enum to ordinal to store in the database
                 ProjectStatus projectStatus1;
                 if (projectStatus == ProjectStatus.IN_PROGRESS.ordinal()) {
                     projectStatus1 = ProjectStatus.IN_PROGRESS;
@@ -58,8 +56,8 @@ public class TesterDaoImpl implements TesterDao {
                 project.setProjectId(projectId);
                 project.setProjectStatus(projectStatus1);
 
-                // get all the bugs related to the project
                 try (PreparedStatement preparedStatement1 = connection.prepareStatement(Queries.GET_BUGS_FOR_PROJECT)) {
+                    preparedStatement1.setInt(1, projectId);
                     ResultSet resultSet1 = preparedStatement1.executeQuery();
                     while (resultSet1.next()) {
                         int bugId = resultSet1.getInt("bugId");
@@ -94,10 +92,10 @@ public class TesterDaoImpl implements TesterDao {
     }
 
     /**
-     * Get the severity level of bug as the ordinal value and convert back to Enum
+     * Gets the severity level of a bug as the ordinal value and converts it back to an Enum.
      *
-     * @param bugSeverityLevel ordinal value of the severity level
-     * @return enum of severity level
+     * @param bugSeverityLevel The ordinal value of the severity level.
+     * @return The SeverityLevel enum value.
      */
     private static SeverityLevel getSeverityLevel(int bugSeverityLevel) {
         SeverityLevel severityLevel;
@@ -113,6 +111,12 @@ public class TesterDaoImpl implements TesterDao {
         return severityLevel;
     }
 
+    /**
+     * Adds a new bug to the database.
+     *
+     * @param bug The Bug object to be added.
+     * @throws SQLException If there is an error in adding the bug to the database.
+     */
     @Override
     public void addNewBug(Bug bug) throws SQLException {
         try (PreparedStatement preparedStatement = connection.prepareStatement(Queries.INSERT_INTO_BUGS)) {
@@ -125,12 +129,19 @@ public class TesterDaoImpl implements TesterDao {
             preparedStatement.setString(7, bug.getMarkForClosing());
             preparedStatement.setInt(8, bug.getClosedBy());
             preparedStatement.setDate(9, (java.sql.Date) bug.getClosedOn());
-            preparedStatement.setInt(10, bug.getStatus().ordinal());
+            preparedStatement.setInt(10, bug.getBugStatus().ordinal());
             preparedStatement.setInt(11, bug.getSeverityLevel().ordinal());
             preparedStatement.execute();
         }
     }
 
+    /**
+     * Fetches a list of bugs for a specific project from the database.
+     *
+     * @param projectId The ID of the project.
+     * @return A list of bugs related to the specified project.
+     * @throws SQLException If there is an error in fetching the bug list.
+     */
     @Override
     public List<Bug> getBugsList(int projectId) throws SQLException {
         try (PreparedStatement preparedStatement = connection.prepareStatement(Queries.GET_BUGS_FOR_TESTER)) {
@@ -165,29 +176,3 @@ public class TesterDaoImpl implements TesterDao {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

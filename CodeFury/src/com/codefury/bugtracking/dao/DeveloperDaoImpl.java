@@ -10,13 +10,26 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
+/**
+ * Implementation of the Developer Data Access Object (DAO) interface that provides database operations for developers.
+ */
 public class DeveloperDaoImpl implements DeveloperDao {
     private final Connection connection;
 
+    /**
+     * Constructs a new DeveloperDaoImpl instance and initializes the database connection.
+     */
     public DeveloperDaoImpl() {
         this.connection = DatabaseConnection.getConnection();
     }
 
+    /**
+     * Marks a bug for closing with the given bug ID, remarks, and developer ID.
+     *
+     * @param bugId       The ID of the bug to mark for closing.
+     * @param remarks     Remarks or comments for closing the bug.
+     * @param developerId The ID of the developer marking the bug.
+     */
     @Override
     public void markBugForClosing(int bugId, String remarks, int developerId) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(Queries.MARK_BUG_FOR_CLOSING)) {
@@ -27,6 +40,13 @@ public class DeveloperDaoImpl implements DeveloperDao {
         }
     }
 
+    /**
+     * Retrieves a Developer object based on the developer's ID.
+     *
+     * @param developerId The ID of the developer.
+     * @return A Developer object.
+     * @throws SQLException If there is an error in the SQL operation.
+     */
     @Override
     public Developer getDeveloperObject(int developerId) throws SQLException {
 
@@ -54,6 +74,13 @@ public class DeveloperDaoImpl implements DeveloperDao {
         }
     }
 
+    /**
+     * Retrieves a Project object based on the project's ID.
+     *
+     * @param projectId The ID of the project.
+     * @return A Project object.
+     * @throws SQLException If there is an error in the SQL operation.
+     */
     @Override
     public Project getProjectObject(int projectId) throws SQLException {
         try (PreparedStatement preparedStatement = connection.prepareStatement(Queries.GET_PROJECT_OBJECT)) {
@@ -99,12 +126,11 @@ public class DeveloperDaoImpl implements DeveloperDao {
         }
     }
 
-
     /**
-     * Get the severity level of bug as the ordinal value and convert back to Enum
+     * Get the severity level of a bug as the ordinal value and convert it back to the SeverityLevel enum.
      *
-     * @param bugSeverityLevel ordinal value of the severity level
-     * @return enum of severity level
+     * @param bugSeverityLevel The ordinal value of the severity level.
+     * @return The SeverityLevel enum value.
      */
     private static SeverityLevel getSeverityLevel(int bugSeverityLevel) {
         SeverityLevel severityLevel;
@@ -120,6 +146,13 @@ public class DeveloperDaoImpl implements DeveloperDao {
         return severityLevel;
     }
 
+    /**
+     * Retrieves a Bug object based on the bug's ID.
+     *
+     * @param bugId The ID of the bug.
+     * @return A Bug object.
+     * @throws SQLException If there is an error in the SQL operation.
+     */
     @Override
     public Bug getBugObject(int bugId) throws SQLException {
         try (PreparedStatement preparedStatement1 = connection.prepareStatement(Queries.GET_BUGS_FOR_PROJECT)) {

@@ -11,6 +11,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Date;
 
+/**
+ * DAO class for JSON parser
+ */
 public class JsonParserDaoImpl implements JsonParserDao {
 
     private final Connection connection;
@@ -19,6 +22,11 @@ public class JsonParserDaoImpl implements JsonParserDao {
         this.connection = DatabaseConnection.getConnection();
     }
 
+    /**
+     * Saves the employee data to the database.
+     *
+     * @param employee the employee object to be saved
+     */
     @Override
     public void saveEmployeeData(Employee employee) {
         int employeeId = employee.getEmployeeId();

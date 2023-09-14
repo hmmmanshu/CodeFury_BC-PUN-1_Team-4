@@ -66,7 +66,53 @@ public class Project {
         this.projectId = projectId;
     }
 
-    // (Repeat the above two sets of methods for other fields...)
+    public static int getProjectIdCounter() {
+        return projectIdCounter;
+    }
+
+    public static void setProjectIdCounter(int projectIdCounter) {
+        Project.projectIdCounter = projectIdCounter;
+    }
+
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
+
+    public int getProjectManagerId() {
+        return projectManagerId;
+    }
+
+    public void setProjectManagerId(int projectManagerId) {
+        this.projectManagerId = projectManagerId;
+    }
+
+    public int getTesterId() {
+        return testerId;
+    }
+
+    public void setTesterId(int testerId) {
+        this.testerId = testerId;
+    }
+
+    public ProjectStatus getProjectStatus() {
+        return projectStatus;
+    }
+
+    public void setProjectStatus(ProjectStatus projectStatus) {
+        this.projectStatus = projectStatus;
+    }
+
+    public List<Integer> getBugsList() {
+        return bugsList;
+    }
+
+    public void setBugsList(List<Integer> bugsList) {
+        this.bugsList = bugsList;
+    }
 
     /**
      * Add a bug to the project's bug list.

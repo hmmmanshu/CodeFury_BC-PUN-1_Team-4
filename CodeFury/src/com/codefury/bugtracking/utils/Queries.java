@@ -23,4 +23,5 @@ public interface Queries {
     String CLOSE_BUG = "UPDATE bugs SET bugStatus = ? WHERE bugId = ?";
     String CHANGE_PROJECT_STATUS = "UPDATE project SET projectStatus = ? WHERE projectId ?";
     String MARK_BUG_FOR_CLOSING = "UPDATE bugs SET markForClosing = '?' where bugId = ?;";
+    String ADD_CREDENTIALS = "INSERT INTO employee (employeeId, password) VALUES (?, ?);";
 }

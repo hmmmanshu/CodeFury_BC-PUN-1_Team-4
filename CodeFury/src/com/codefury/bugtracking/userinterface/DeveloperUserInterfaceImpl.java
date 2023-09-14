@@ -6,6 +6,7 @@ import com.codefury.bugtracking.exceptions.NoProjectAssignedToDeveloper;
 import com.codefury.bugtracking.service.DeveloperService;
 import com.codefury.bugtracking.service.DeveloperServiceImpl;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -67,6 +68,8 @@ public class DeveloperUserInterfaceImpl implements DeveloperUserInterface {
             }
         } catch (NoProjectAssignedToDeveloper e) {
             System.out.println(e.getMessage());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -84,6 +87,8 @@ public class DeveloperUserInterfaceImpl implements DeveloperUserInterface {
             developerService.markBugForClosing(bugId, remarks, developerId);
         } catch (NoProjectAssignedToDeveloper | InvalidBugMarkedForClosingException e) {
             System.out.println(e.getMessage());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 }

@@ -1,3 +1,5 @@
+package com.codefury.bugtracking.utils;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;

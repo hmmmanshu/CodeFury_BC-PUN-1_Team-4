@@ -15,14 +15,33 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Implementation of the TesterService interface.
+ */
 public class TesterServiceImpl implements TesterService {
+
+    /**
+     * The ID of the tester.
+     */
     private final int testerId;
+
+    /**
+     * The TesterDao object.
+     */
     private TesterDao testerDao;
 
+    /**
+     * Constructor for the TesterServiceImpl class.
+     *
+     * @param testerId The ID of the tester.
+     */
     public TesterServiceImpl(int testerId) {
         this.testerId = testerId;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Project> getProjectsList() throws CouldNotGetProjectsListException {
         testerDao = new TesterDaoImpl();
@@ -35,6 +54,9 @@ public class TesterServiceImpl implements TesterService {
         return projectList;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Bug> getBugsList(int projectId) throws CouldNotGetBugsList {
         testerDao = new TesterDaoImpl();
@@ -45,6 +67,9 @@ public class TesterServiceImpl implements TesterService {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void raiseNewBug(int projectId, String bugTitle, String bugDescription, SeverityLevel bugSeverityLevel) throws CantRaiseBugInCurrentProjectException {
         testerDao = new TesterDaoImpl();
@@ -52,6 +77,7 @@ public class TesterServiceImpl implements TesterService {
             List<Project> projectList = testerDao.getProjectsList(this.testerId);
             if (projectList.get(0).getProjectId() != projectId && projectList.get(1).getProjectId() != projectId)
                 throw new CantRaiseBugInCurrentProjectException("Cant raise bug in current project");
+
             int projectManagerId = projectList.get(0).getProjectId() == projectId ? projectList.get(0).getProjectManagerId() : projectList.get(1).getProjectManagerId();
             LocalDateTime currentDateTime = LocalDateTime.now();
             Date currentDate = java.util.Date.from(currentDateTime.atZone(java.time.ZoneId.systemDefault()).toInstant());
