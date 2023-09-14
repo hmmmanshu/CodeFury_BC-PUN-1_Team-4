@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bug Tracking System - Developer</title>
+    <!-- Google fonts -->
+    <!-- Import 1 for login buttons font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Import 1 ends -->
+
+    <!-- Import 2 for headings  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&family=Sigmar+One&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Import 2 ends -->
+
+    <link rel="stylesheet" href="../css/developerStyle.css" />
+    <link rel="stylesheet" href="../css/commonHome.css">
+  </head>
+  <body>
+    <header>
+      <h1>Welcome,Alexander Mathew!</h1>
+    </header>
+    <div class="d1">
+      <ul>
+        <li><a class="first" href="../html/developerHome.html">Dashboard</a></li>
+        <li><a href="#">My Projects</a></li>
+        <li><a href="#">My Profile</a></li>
+        <li><a href="../html/loginUser.html">Logout</a></li>
+      </ul>
+    </div>
+    <div class="d2" style="margin-top: -2em;">
+      <a href="../html/developerHome.html">Dashboard</a>
+      <a href="#">My Profile</a>
+      <a href="../html/loginUser.html">Logout</a>
+    </div>
+    <section id="user-info">
+      <div>
+        Username: <span>Alex1</span><br />
+        Email: <span>Alexandermathew@gmail.com</span>
+      </div>
+    </section>
+
+    <section id="project-list">
+      <table border="1">
+        <caption>
+          <h1 style="margin-top: -1.5em;">Your Project: Project 1</h1>
+        </caption>
+        <thead>
+          <tr>
+            <th>Manager</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>List of Members</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>John Dao</td>
+            <td>2023-09-15</td>
+            <td>2023-12-15</td>
+            <td>Aman, Linda, Rony, Bob, Sam, Raman, Haris</td>
+          </tr>
+        </tbody>
+      </table>
+  
+      <table border="1">
+        <caption>
+          <h1>Bug List</h1>
+        </caption>
+        <thead>
+          <tr>
+            <th>Bug-List-Items</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th class="description" >Description</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Bug 1</td>
+            <td>2023-09-17</td>
+            <td>2023-09-30</td>
+            <td class="description">
+              Configuration Bugs:
+  
+              Misconfigured Settings: Bugs arising from incorrect configurations
+            </td>
+            <td><button>Mark For Action</button></td>
+          </tr>
+  
+          <tr>
+            <td>Bug 4</td>
+            <td class="dates">2023-09-17</td>
+            <td class="dates">2023-10-17</td>
+            <td class="description">
+              Performance Bugs:
+  
+              Slow Response Times: Delays in loading pages, making the system slow
+              and unresponsive.
+            </td>
+            <td><button>Mark For Action</button></td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </section>
+
+  </body>
+</html>

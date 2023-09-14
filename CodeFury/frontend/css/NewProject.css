@@ -1,0 +1,142 @@
+body {
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    background-color: #d7f2f5;
+    background-image: url("../images/black2.png");
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+h1{
+    font-family: "Shadows Into Light", cursive;
+    font-family: "Sigmar One", cursive;
+    font-variant: small-caps;
+}
+
+.container {
+    margin-left: 10%;
+    width: 70%;
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+}
+
+input[type="text"], select {
+    width: 98.5%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+textarea {
+    width: 98.5%;
+    padding: 10px;
+    height: 100px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #1b7d86;
+    color: #fff;
+    border: none; 
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+}
+button:hover{
+    background-color: #000;
+}
+
+.dates{
+    display: flex;
+}
+
+#end{
+    flex: 0;
+    margin-left: 20%;
+}
+
+.group_team{
+    display: flex; 
+}
+#teamMembersSection {
+    flex: 1; 
+  }
+  
+#selectedMembersSection {
+    flex: 1; 
+    margin-left: 10%;
+ }
+
+
+/*   NavBar   */
+
+.vertical-navbar {
+    background-color: #1b7d86;
+    color: #1b7d86;
+    width: 10px;
+    position:fixed;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+.first{
+    margin-top: 15em;
+}
+
+.nav-list {
+    list-style: none;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding: 1rem 0.5rem;
+    transition: background-color 0.3s ease;
+}
+
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 10%;
+    height: 100%;
+    background-color: #1b7d86;
+    overflow: auto;
+    position: fixed;
+}
+
+li a {
+    color: white;
+    display: block;
+    padding: 15px 20px;
+    text-decoration: none;
+    border-bottom: 1px solid #fff;
+    box-shadow: 2px 3px 4px #fff;
+}
+
+li a:hover {
+    box-shadow: 2px 3px 4px #fff inset;
+}
+
+caption{
+    text-decoration: underline;
+}
+
+

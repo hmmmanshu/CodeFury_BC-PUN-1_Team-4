@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bug Tracking System</title>
+    <!-- Google fonts -->
+    <!-- Import 1 for login buttons font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Import 1 ends -->
+
+    <!-- Import 2 for headings  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&family=Sigmar+One&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Import 2 ends -->
+    <link rel="stylesheet" type="text/css" href="../css/ProjectDetails.css" />
+    <script src="../js/ProjectDetails.js"></script>
+  </head>
+  <body>
+    <div class="vertical-navbar">
+      <ul class="nav-list">
+        <li><a class="first" class="nav-link" href="../html/projectHome.html">Dashboard</a></li>
+        <li><a class="nav-link" href="#">My Projects</a></li>
+        <li><a class="nav-link" href="#">My Profile</a></li>
+        <li><a class="nav-link" href="../html/loginUser.html">Logout</a></li>
+      </ul>
+    </div>
+    <div class="project-details">
+      <h1 id="proHead">Project Details</h1>
+      <div class="project-info">
+        <p><strong>Project Name:</strong> Sample Project</p>
+        <p><strong>Start Date:</strong> 2023-09-01</p>
+        <p><strong>Project Manager:</strong> John Doe</p>
+      </div>
+      <div class="team-members bug-list">
+        <h2>Team Members</h2>
+        <table id="table1">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>John Doe</td>
+              <td>Project Manager</td>
+            </tr>
+            <tr>
+              <td>Developer A</td>
+              <td>Developer</td>
+            </tr>
+            <tr>
+              <td>Developer B</td>
+              <td>Developer</td>
+            </tr>
+            <tr>
+              <td>Tester A</td>
+              <td>Tester</td>
+            </tr>
+            <!-- Add more team members and their roles as needed -->
+          </tbody>
+        </table>
+      </div>
+      <div class="bug-list">
+        <h2>Bug List</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Bug ID</th>
+              <th>Bug Title</th>
+              <th>Bug Status</th>
+              <th>Assigned Developer</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>UI Issue</td>
+              <td>
+                <select class="bug-status">
+                  <option value="Open">Open</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Closed">Closed</option>
+                </select>
+                <button class="change-status">Change</button>
+              </td>
+              <td>
+                <select class="developer-list">
+                  <option value="Developer A">Developer A</option>
+                  <option value="Developer B">Developer B</option>
+                  <option value="Developer C">Developer C</option>
+                  <!-- Add more developers as needed -->
+                </select>
+                <button class="assign-bug" onclick="assignDeveloper(this)">
+                  Assign
+                </button>
+              </td>
+              <td>
+                <button class="close-bug" onclick="closeBug(this)">
+                  Close
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Database Error</td>
+              <td>
+                <select class="bug-status">
+                  <option value="Open">Open</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Closed">Closed</option>
+                </select>
+                <button class="change-status">Change</button>
+              </td>
+              <td>
+                <select class="developer-list">
+                  <option value="Developer A">Developer A</option>
+                  <option value="Developer B">Developer B</option>
+                  <option value="Developer C">Developer C</option>
+                  <!-- Add more developers as needed -->
+                </select>
+                <button class="assign-bug" onclick="assignDeveloper(this)">
+                  Assign
+                </button>
+              </td>
+              <td>
+                <button class="close-bug" onclick="closeBug(this)">
+                  Close
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

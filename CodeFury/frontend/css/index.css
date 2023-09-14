@@ -1,0 +1,61 @@
+.sub{
+    font-size: 0.5em;
+    font-variant: normal;
+    font-style: italic;
+    margin: 1em;
+    font-family: 'Shadows Into Light', cursive;
+}
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../images/black2.png");
+    background-size: cover;
+    width: 49vw;
+    height: 100vh;
+}
+.hometext{
+    font-size: 1.5em;
+}
+.loginbuttons{
+    font-family: 'Shadows Into Light', cursive;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 40em;
+    border-radius: 5em;
+}
+.buttons{
+    color: #000;
+    text-decoration: none;
+    padding: 0.8em;
+    margin: 0.5em;
+    font-size: 1.5em;
+    border-radius: 0.8em;
+    width: 6em;
+    background-color: #d7f2f5;
+    border: 2px solid #000;
+}
+.buttons:hover{
+    background-color: #1b7d86;
+    border: 2px solid #000;
+    color: #fff;
+}
+@media screen and (min-width: 200px) and (max-width: 1000px) {
+    /* .container1{
+       width: 100vw;
+       text-align: center;
+      background-size: cover;
+    } */
+    .container{
+      padding: 0;
+      width: 100vw;
+      font-size: 0.8em;
+      text-align: center;
+      /* background-image: none; */
+    }
+  }

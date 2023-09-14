@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register User</title>
+    <!-- Google fonts -->
+    <!-- Import 1 for login buttons font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Import 1 ends -->
+        <!-- Import 2 for headings  -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&family=Sigmar+One&display=swap"
+          rel="stylesheet"
+        />
+        <!-- Import 2 ends -->
+    <!-- ____________________________________ -->
+    <link rel="stylesheet" href="../css/loginpages.css" />
+    <link rel="stylesheet" href="../css/common.css" />
+    <script src="../js/Validation.js"></script>
+  </head>
+  <body>
+    <div class="container1">
+      Welcome <span class="sub">Username</span>
+      <div style="font-size: 0.5em;">
+        to bug tracking system. <br />
+        your unique id is - 23563
+      </div>
+    </div>
+    <div class="container">
+        <h1>Register User</h1>
+        <form action="" class="form1" name="registerForm">
+            <div class="field">Email : <input type="email" name="email" /></div>
+            <div class="field">
+              <label for="type">Type : </label>
+              <select name="type" id="" class="inputOption">
+                <option value="projectManager">Project Manager</option>
+                <option value="developer">Developer</option>
+                <option value="tester">Tester</option>
+              </select>
+            </div>
+          <div class="field">Password : <input type="password" name="password" /></div>
+          <div class="field">Confirm Pass : <input type="password" name="confirmPassword" /></div>
+          <div class="field">
+            <a onclick="Rconf()" href="" id="registerButton" class="buttons">Register</a>
+            <!-- <a href="../html/loginUser.html" class="buttons">Register</a> -->
+          </div>
+        </form>
+    </div>
+  </body>
+</html>

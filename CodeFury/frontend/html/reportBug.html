@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bug Tracking System</title>
+    <!-- Google fonts -->
+    <!-- Import 1 for login buttons font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+    href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap"
+    rel="stylesheet"
+    />
+    <!-- Import 1 ends -->
+    
+    <!-- Import 2 for headings  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+    href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&family=Sigmar+One&display=swap"
+    rel="stylesheet"
+    />
+    <!-- Import 2 ends -->
+    <link rel="stylesheet" href="../css/reportBugStyle.css">
+    <link rel="stylesheet" href="../css/commonHome.css">
+</head>
+
+<body>
+    <div class="d1">
+        <ul>
+            <li><a class="first" href="../html/testerHome.html">Dashboard</a></li>
+            <li><a href="#">My Projects</a></li>
+            <li><a href="#">My Profile</a></li>
+            <li><a href="../html/loginUser.html">Logout</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <div id="bug-form">
+            <h1 style="text-align: center">Report a New Bug</h1>
+
+            <label for="bugTitle">Title:</label>
+            <input type="text" id="bugTitle" placeholder="Enter bug title">
+            <label for="reportedDate">Reporting Date:</label>
+            <input type="date" id="reportedDate" name="reportedDate">
+            <label for="bugDescription">Description:</label>
+            <textarea id="bugDescription" placeholder="Enter bug description"></textarea>
+            <label for="severity">Severity:</label>
+            <select name="severe" id="severity">
+                <option value="low">Low</option>
+                <option value="minor">Minor</option>
+                <option value="major">Major</option>
+                <option value="critical">Critical</option>
+            </select>
+            <br><br>
+            <div class="sub">
+                <button type="submit" onclick="addBug()" value="Report">Report</button>
+            </div>
+
+
+        </div>
+    </div>
+
+    <script>
+        function addBug() {
+            const title = document.getElementById("bugTitle").value;
+            const reportedDate = document.getElementById("reportedDate").value;
+            const desc = document.getElementById("bugDescription").value;
+
+            // Store the project name in localStorage
+            localStorage.setItem("bugTitle", title);
+            localStorage.setItem("reportedDate", reportedDate);
+            localStorage.setItem("bugDescription", desc);
+
+            // Redirect to index.html
+            window.location.href = "../html/testerHome.html";
+        };
+
+    </script>
+
+
+</body>
+
+</html>

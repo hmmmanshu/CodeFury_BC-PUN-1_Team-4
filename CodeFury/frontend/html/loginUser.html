@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login User</title>
+    <!-- Google fonts -->
+    <!-- Import 1 for login buttons font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Import 1 ends -->
+    <!-- Import 2 for headings  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&family=Sigmar+One&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Import 2 ends -->
+    <!-- ____________________________________ -->
+    <link rel="stylesheet" href="../css/loginpages.css" />
+    <link rel="stylesheet" href="../css/common.css" />
+    <script src="../js/Validation.js"></script>
+  </head>
+  <body>
+    <!-- <div class="container1"></div> -->
+    <div class="container">
+      <form action="" class="form1" name="loginForm">
+        <h1>Login</h1>
+        <div class="field">Email : <input type="email" name="email" /></div>
+        <div class="field">
+          <label for="type">Type : </label>
+          <select name="type" id="typeOption" class="inputOption">
+            <option value="projectManager">Project Manager</option>
+            <option value="developer">Developer</option>
+            <option value="tester">Tester</option>
+          </select>
+        </div>
+        <div class="field">
+          Password : <input type="password" name="password" />
+        </div>
+        <div class="field">
+          <a onclick="Lconf()" href="" id="loginButton" class="buttons"
+            >Login</a
+          >
+        </div>
+      </form>
+    </div>
+  </body>
+  <style>
+    .container {
+      background-image: url("../images/bg6.png");
+      background-size: cover;
+      width: 100vw;
+      height: 100vh;
+    }
+    @media screen and (min-width: 200px) and (max-width: 1000px) {
+      .container{
+        background-size: contain;
+      }
+      .form1 {
+        width: 16em;
+        text-align: center;
+      }
+      .field{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        align-items: center;
+      }
+      input, .inputOption {
+        width: 12em;
+        padding: 0%;
+        margin-left: 0em;
+        margin-top: 1em;
+      }
+      .buttons{
+        width: 6em;
+      }
+    }
+  </style>
+</html>

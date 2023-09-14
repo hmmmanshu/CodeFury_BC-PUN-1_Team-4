@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create New Project</title>
+    <!-- Google fonts -->
+    <!-- Import 1 for login buttons font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Import 1 ends -->
+
+    <!-- Import 2 for headings  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&family=Sigmar+One&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Import 2 ends -->
+    <link rel="stylesheet" type="text/css" href="../css/NewProject.css" />
+
+    <script src="../js/NewProject.js"></script>
+  </head>
+  <body>
+    <div class="vertical-navbar">
+      <ul class="nav-list">
+        <li><a class="first" class="nav-link" href="../html/projectHome.html">Dashboard</a></li>
+        <li><a class="nav-link" href="#">My Projects</a></li>
+        <li><a class="nav-link" href="#">My Profile</a></li>
+        <li><a class="nav-link" href="../html/loginUser.html">Logout</a></li>
+      </ul>
+    </div>
+    <div class="container">
+      <h1>Create New Project</h1>
+      <form>
+        <div class="form-group">
+          <label for="projectName">Project Name:</label>
+          <input type="text" id="projectName" name="projectName" required />
+        </div>
+        <div class="dates">
+          <div class="form-group" id="start">
+            <label for="startDate">Start Date:</label>
+            <input type="date" id="startDate" name="startDate" required />
+          </div>
+          <div class="form-group" id="end">
+            <label for="endDate">End Date:</label>
+            <input type="date" id="endDate" name="endDate" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="description">Description:</label>
+          <textarea id="description" name="description" required></textarea>
+        </div>
+        <div class="group_team">
+          <div id="teamMembersSection" style="width: 40%">
+            <label for="teamMembers">Team Members:</label>
+            <select id="teamMembers" name="teamMembers[]" multiple required>
+              <option value="Developer A">Developer A</option>
+              <option value="Developer B">Developer B</option>
+              <option value="Developer C">Developer C</option>
+            </select>
+            <button type="button" id="addMember">Add Member</button>
+          </div>
+          <div id="selectedMembersSection">
+            <!-- Selected team members will be displayed here -->
+          </div>
+        </div>
+        <button type="submit" onclick="createProject()">Create Project</button>
+      </form>
+    </div>
+
+    <script>
+      function createProject() {
+        const projectName = document.getElementById("projectName").value;
+        const startDate = document.getElementById("startDate").value;
+        const endDate = document.getElementById("endDate").value;
+
+        // Store the project name in localStorage
+        localStorage.setItem("projectName", projectName);
+        localStorage.setItem("startDate", startDate);
+        localStorage.setItem("endDate", endDate);
+
+        // Redirect to index.html
+        window.location.href = "../html/projectHome.html";
+      }
+    </script>
+  </body>
+</html>

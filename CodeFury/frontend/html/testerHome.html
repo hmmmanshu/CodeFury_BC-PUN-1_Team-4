@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bug Tracking System - Tester</title>
+    <!-- Google fonts -->
+    <!-- Import 1 for login buttons font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap"
+      rel="stylesheet"
+    /> 
+    <!-- Import 1 ends -->
+
+    <!-- Import 2 for headings  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&family=Sigmar+One&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Import 2 ends -->
+    <link rel="stylesheet" href="../css/testerStyle.css" />
+    <link rel="stylesheet" href="../css/commonHome.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Welcome, Adam Smith!</h1>
+    </header>
+    <div class="d1">
+      <ul>
+        <li><a class="first" href="../html/testerHome.html">Dashboard</a></li>
+        <li><a href="#">My Projects</a></li>
+        <li><a href="#">My Profile</a></li>
+        <li><a href="../html/loginUser.html">Logout</a></li>
+      </ul>
+    </div>
+    <div class="d2" style="margin-top: -2em;">
+      <a href="../html/testerHome.html">Dashboard</a>
+      <a href="#">My Profile</a>
+      <a href="../html/loginUser.html">Logout</a>
+    </div>
+    <section id="user-info">
+      <div>Username: <span>Adam123</span></div>
+      <div>Email: <span>Adamsmith@gmail.com</span></div>
+    </section>
+    <section id="actions">
+      <button onclick="window.location.href='../html/reportBug.html'">
+        + Report a Bug
+      </button>
+    </section>
+    <section id="project-list">
+        <table border="1" >
+          <div class="caption"><h1>Task To Do</h1></div>
+          <caption>
+            <h3>Project 1</h3>
+          </caption>
+          <thead>
+            <tr>
+              <th>Bug-List Items</th>
+              <th>Repoted On</th>
+              <th>Description</th>
+              <th>Progress</th>
+            </tr> 
+          </thead>
+          <tbody>
+            <tr>
+              <td><a href="">Bug 1 Title</a></td>
+              <td>17-09-2023</td>
+              <td>
+                Configuration Bugs:<br />
+    
+                Misconfigured Settings: Bugs arising from incorrect configurations
+              </td>
+              <td>In Progress</td>
+            </tr>
+    
+            <tr>
+              <td><a href="">Bug 4 Title</a></td>
+              <td>17-09-2023</td>
+              <td>
+                Performance Bugs:<br />
+    
+                Slow Response Times: Delays in loading pages, making the system slow
+                and unresponsive.
+              </td>
+              <td>In Progress</td>
+            </tr>
+          </tbody>
+        </table>
+        <table border="1">
+          <caption>
+            <h3>Project 2</h3>
+          </caption>
+          <thead>
+            <tr>
+              <th>Bug-List Items</th>
+              <th>Repoted On</th>
+              <th>Description</th>
+              <th>Progress</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a href="">Bug 2 Title</a></td>
+              <td class="dates">22-10-2023</td>
+              <td>
+                Functional Bugs:<br />
+    
+                Incorrect Sorting or Filtering: Bugs that result in inaccurate
+                sorting or filtering of issues, as described in the previous
+                example.<br />
+                Missing Functionality: Features or functions that are expected to
+                work but are not functioning correctly or are entirely missing.
+              </td>
+              <td>In Progress</td>
+            </tr>
+            <tr>
+              <td><span id="bugTitleCell"></span></td>
+              <td><span id="reportedDateCell"></span></td>
+              <td><span id="bugDescriptionCell"></span></td>
+              <td>Not assigned</td>
+  
+          </tr>
+          </tbody>
+        </table>
+    </section>
+    <script>
+      window.onload = function () {
+
+          const title = localStorage.getItem("bugTitle");
+          const reportedDate = localStorage.getItem("reportedDate");
+          const desc = localStorage.getItem("bugDescription");
+
+          if (title) {
+
+              document.getElementById("bugTitleCell").textContent = title;
+              document.getElementById("reportedDateCell").textContent = reportedDate;
+              document.getElementById("bugDescriptionCell").textContent = desc;
+
+
+              localStorage.removeItem("bugTitle");
+              localStorage.removeItem("reportedDate");
+              localStorage.removeItem("bugDescription");
+          }
+      };
+  </script>
+  </body>
+</html>
